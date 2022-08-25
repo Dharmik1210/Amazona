@@ -1,27 +1,27 @@
-//import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 const data = {
-  //   users: [
-  //     {
-  //       name: 'John',
-  //       email: 'admin@example.com',
-  //       password: bcrypt.hashSync('123456'),
-  //       isAdmin: true,
-  //     },
-  //     {
-  //       name: 'Jane',
-  //       email: 'user@example.com',
-  //       password: bcrypt.hashSync('123456'),
-  //       isAdmin: false,
-  //     },
-  //   ],
+  users: [
+    {
+      name: 'Dharmik',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: true,
+    },
+    {
+      name: 'Disha',
+      email: 'user@example.com',
+      password: bcrypt.hashSync('123456'),
+      isAdmin: false,
+    },
+  ],
   products: [
     {
       name: 'Free Shirt',
       slug: 'free-shirt',
       category: 'Shirts',
       image: '/images/shirt1.jpg',
-      price: 70,
+      price: 799,
       brand: 'Nike',
       rating: 4.5,
       numReviews: 8,
@@ -33,7 +33,7 @@ const data = {
       slug: 'fit-shirt',
       category: 'Shirts',
       image: '/images/shirt2.jpg',
-      price: 80,
+      price: 899,
       brand: 'Adidas',
       rating: 3.2,
       numReviews: 10,
@@ -45,7 +45,7 @@ const data = {
       slug: 'slim-shirt',
       category: 'Shirts',
       image: '/images/shirt3.jpg',
-      price: 90,
+      price: 999,
       brand: 'Raymond',
       rating: 4.5,
       numReviews: 3,
@@ -57,7 +57,7 @@ const data = {
       slug: 'golf-pants',
       category: 'Pants',
       image: '/images/pants1.jpg',
-      price: 90,
+      price: 999,
       brand: 'Oliver',
       rating: 2.9,
       numReviews: 13,
@@ -69,7 +69,7 @@ const data = {
       slug: 'fit-pants',
       category: 'Pants',
       image: '/images/pants2.jpg',
-      price: 95,
+      price: 799,
       brand: 'Zara',
       rating: 3.5,
       numReviews: 7,
@@ -81,7 +81,7 @@ const data = {
       slug: 'classic-pants',
       category: 'Pants',
       image: '/images/pants3.jpg',
-      price: 75,
+      price: 899,
       brand: 'Casely',
       rating: 2.4,
       numReviews: 14,
