@@ -9,6 +9,8 @@ import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+//page that shows list of items in cart added by user
+
 function CartScreen() {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
@@ -18,32 +20,35 @@ function CartScreen() {
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
-  const updateCartHandler = async (item, qty) => {
+  const updateCarthandler = async (item, qty) => {
     const quantity = Number(qty);
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock');
+      return toast.error('Oops. We are out of stock');
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
-    toast.success('Product updated in the cart');
+    toast.success('Product added to the cart');
   };
   return (
     <Layout title="Shopping Cart">
       <h1 className="mb-4 text-xl">Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href="/">Go shopping</Link>
+          No items added.{' '}
+          <p className=" underline text-blue-600 hover:text-blue-800">
+            <Link href="/">Go Shopping</Link>
+          </p>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
           <div className="overflow-x-auto md:col-span-3">
-            <table className="min-w-full ">
+            <table className="min-w-full">
               <thead className="border-b">
                 <tr>
-                  <th className="p-5 text-left">Item</th>
-                  <th className="p-5 text-right">Quantity</th>
-                  <th className="p-5 text-right">Price</th>
-                  <th className="p-5">Action</th>
+                  <th className="px-5 text-left">Item</th>
+                  <th className="px-5 text-right">Quantity</th>
+                  <th className="px-5 text-right">Price</th>
+                  <th className="px-5">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,7 +72,7 @@ function CartScreen() {
                       <select
                         value={item.quantity}
                         onChange={(e) =>
-                          updateCartHandler(item, e.target.value)
+                          updateCarthandler(item, e.target.value)
                         }
                       >
                         {[...Array(item.countInStock).keys()].map((x) => (
@@ -77,7 +82,7 @@ function CartScreen() {
                         ))}
                       </select>
                     </td>
-                    <td className="p-5 text-right">₹{item.price}</td>
+                    <td className="p-5 text-right">${item.price}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(item)}>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
@@ -88,20 +93,20 @@ function CartScreen() {
               </tbody>
             </table>
           </div>
-          <div className="card p-5">
+          <div className="card p-5 h-32">
             <ul>
               <li>
-                <div className="pb-3 text-xl">
-                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
+                <div className="pb-3 text-xl mb-1">
+                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :₹{' '}
                   {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                 </div>
               </li>
               <li>
                 <button
                   onClick={() => router.push('login?redirect=/shipping')}
-                  className="primary-button w-full"
+                  className="primary-button w-full pb-3"
                 >
-                  Check Out
+                  CheckOut
                 </button>
               </li>
             </ul>
@@ -111,5 +116,4 @@ function CartScreen() {
     </Layout>
   );
 }
-
 export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });

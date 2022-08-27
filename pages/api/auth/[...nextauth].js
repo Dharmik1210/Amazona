@@ -1,10 +1,17 @@
-import bcryptjs from 'bcryptjs';
+//import bcryptjs from 'bcryptjs';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 import User from '../../../models/User';
 import db from '../../../utils/db';
 
 export default NextAuth({
+  Providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+  ],
   session: {
     strategy: 'jwt',
   },
@@ -28,7 +35,8 @@ export default NextAuth({
           email: credentials.email,
         });
         await db.disconnect();
-        if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+        // if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+        if (user) {
           return {
             _id: user._id,
             name: user.name,

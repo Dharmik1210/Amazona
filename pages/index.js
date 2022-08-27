@@ -1,6 +1,8 @@
 import axios from 'axios';
+//import Signin from '../components/Signin';
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
+//import { useSession } from 'next-auth/react';
 import Layout from '../components/Layout';
 import ProductItem from '../components/ProductItem';
 import Product from '../models/Product';
@@ -23,6 +25,9 @@ export default function Home({ products }) {
 
     toast.success('Product added to the cart');
   };
+
+  // const { data: session } = useSession();
+  // if (!session) return <Signin />;
 
   return (
     <Layout title="Home Page">
