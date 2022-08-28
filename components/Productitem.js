@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-export default function productitem({ product, addToCartHandler }) {
+export default function ProductItem({ product, addToCartHandler }) {
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
