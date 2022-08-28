@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 //import { useSession } from 'next-auth/react';
 import Layout from '../components/Layout';
-import ProductItem from '../components/ProductItem';
+import ProductItem from '../components/ProductItem.js';
 import Product from '../models/Product';
 import db from '../utils/db';
 import { Store } from '../utils/Store';
