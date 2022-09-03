@@ -10,6 +10,19 @@ import DropdownLink from './DropdownLink';
 import Cookies from 'js-cookie';
 
 export default function Layout({ title, children }) {
+  // const [keyword, setKeyword] = useState('');
+
+  // const filteredProducts = products.filter(
+  //   (product) =>
+  //     product.name.toLowerCase().includes(keyword) ||
+  //     product.category.toLowerCase().includes(keyword) ||
+  //     product.brand.toLowerCase().includes(keyword)
+  // );
+
+  // const onInputChange = (e) => {
+  //   e.preventDefault();
+  //   setKeyword(e.target.value.toLowerCase());
+  // };
   const { status, data: session } = useSession();
 
   const { state, dispatch } = useContext(Store);
@@ -38,8 +51,17 @@ export default function Layout({ title, children }) {
         <header>
           <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/">
-              <a className="text-lg font-bold">amazona</a>
+              <a
+                className="text-lg
+              font-bold"
+              >
+                amazona
+              </a>
             </Link>
+            {/* <input
+              placeholder="Search"
+              className="flex items-center  justify-center mt-0 focus:ring-gray-100 focus:ring-offset-0"
+            /> */}
             <div>
               <Link href="/cart">
                 <a className="p-2">
