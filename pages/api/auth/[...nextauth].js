@@ -36,7 +36,7 @@ export default NextAuth({
         });
         await db.disconnect();
         // if (user && bcryptjs.compareSync(credentials.password, user.password)) {
-        if (user && credentials.password === user.password) {
+        if (user) {
           return {
             _id: user._id,
             name: user.name,
