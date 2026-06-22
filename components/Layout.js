@@ -10,19 +10,6 @@ import DropdownLink from './DropdownLink';
 import Cookies from 'js-cookie';
 
 export default function Layout({ title, children }) {
-  // const [keyword, setKeyword] = useState('');
-
-  // const filteredProducts = products.filter(
-  //   (product) =>
-  //     product.name.toLowerCase().includes(keyword) ||
-  //     product.category.toLowerCase().includes(keyword) ||
-  //     product.brand.toLowerCase().includes(keyword)
-  // );
-
-  // const onInputChange = (e) => {
-  //   e.preventDefault();
-  //   setKeyword(e.target.value.toLowerCase());
-  // };
   const { status, data: session } = useSession();
 
   const { state, dispatch } = useContext(Store);
@@ -37,6 +24,8 @@ export default function Layout({ title, children }) {
     dispatch({ type: 'CART_RESET' });
     signOut({ callbackUrl: '/login' });
   };
+
+  const currentYear = new Date().getFullYear();
   return (
     <>
       <Head>
@@ -116,7 +105,7 @@ export default function Layout({ title, children }) {
         </header>
         <main className="container m-auto mt-4 px-4">{children}</main>
         <footer className="flex h-10 justify-center items-center shadow-inner">
-          <p>Copyright © 2022 Amazona</p>
+          <p>Copyright © {currentYear} Amazona</p>
         </footer>
       </div>
     </>
